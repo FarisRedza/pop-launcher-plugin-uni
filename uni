@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+
+import json
+import os
+import unicodedata
+import difflib
+import sys
+
+def parse_line(line):
+        split = line.split("\t")
+        return split[0], split[1]
+
+path = os.path.join(os.path.split(__file__)[0], 'symbols.txt')
+with open(path, encoding='utf-8') as f:
+        SYMBOLS = [parse_line(line) for line in f.read().splitlines() if line]
+
+path = os.path.join(os.path.split(__file__)[0], 'emojis.txt')
+with open(path, encoding='utf-8') as f:
+        SYMBOLS = SYMBOLS + [parse_line(line) for line in f.read().splitlines() if line]
+
+SYMBOLS = list(dict.fromkeys(SYMBOLS))
+
+
+def string_ratio(a, b):
+    ''' Compute ratio of string similarity (higher is better)
+    https://stackoverflow.com/questions/17388213/find-the-similarity-metric-between-two-strings#17388505
+    '''
+    return difflib.SequenceMatcher(None, a, b).ratio()
+
+def lookup(word):
+    response = unicodedata.lookup(word)
+
+    result = response
+        
+    return result
+
+def clipboard(word):
+    os.system('echo ' + word + ' | xclip -sel clip')
+
+class App(object):
+    def __init__(self):
+        self.match = None
+
+    def activate(self, index):
+        if not self.matches:
+            return
+        
+        with os.popen('xclip -sel clip', 'w') as stream:
+            stream.write(self.matches[int(index)][0])
+            stream.flush()
+        
+        sys.stdout.write('"Close"\n')
+        sys.stdout.flush()
+
+    def search(self, query):
+        query = query.split(' ', 1)[1].lower()
+        self.matches = [
+            (symbol, description, string_ratio(query, description))
+            for symbol, description in SYMBOLS if query in description
+        ]
+        
+        for index, (symbol, description, ratio) in enumerate(self.matches):
+            sys.stdout.write(json.dumps({
+                'Append': {
+                    'id': index,
+                    'name': symbol,
+                    'description': f'{self.matches[index][1]}',
+                    'keywords': None,
+                    'icon': None,
+                    'exec': None,
+                    'window': None
+                }
+            }))
+            sys.stdout.write('\n')
+
+        sys.stdout.write('"Finished"\n')
+        sys.stdout.flush()
+
+def main():
+    app = App()
+
+    for line in sys.stdin:
+        try:
+            request = json.loads(line)
+            if 'Search' in request:
+                app.search(request['Search'])
+            elif 'Activate' in request:
+                app.activate(request['Activate'])
+        except json.decoder.JSONDecodeError:
+            pass
+
+if __name__ == '__main__':
+    main()

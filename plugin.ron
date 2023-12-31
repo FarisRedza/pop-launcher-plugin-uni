@@ -1,0 +1,11 @@
+(
+    name: "Unicode",
+    description: "Syntax: uni <word>",
+    query: (
+        regex: "^(uni)\\s.*",
+        help: "uni",
+        isolate: true
+    ),
+    bin: (path: "uni"),
+    icon: Name("accessories-character-map-symbolic")
+)
