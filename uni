@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
 import json
-import os
-import unicodedata
-import difflib
 import sys
+import os
+import difflib
 
 def parse_line(line):
         split = line.split("\t")
@@ -20,22 +19,11 @@ with open(path, encoding='utf-8') as f:
 
 SYMBOLS = list(dict.fromkeys(SYMBOLS))
 
-
 def string_ratio(a, b):
     ''' Compute ratio of string similarity (higher is better)
     https://stackoverflow.com/questions/17388213/find-the-similarity-metric-between-two-strings#17388505
     '''
     return difflib.SequenceMatcher(None, a, b).ratio()
-
-def lookup(word):
-    response = unicodedata.lookup(word)
-
-    result = response
-        
-    return result
-
-def clipboard(word):
-    os.system('echo ' + word + ' | xclip -sel clip')
 
 class App(object):
     def __init__(self):
@@ -45,7 +33,7 @@ class App(object):
         if not self.matches:
             return
         
-        with os.popen('xclip -sel clip', 'w') as stream:
+        with os.popen('xclip -selection clipboard', 'w') as stream:
             stream.write(self.matches[int(index)][0])
             stream.flush()
         
