@@ -7,6 +7,5 @@ install:
 	mkdir -p $(PLUGIN)
 	cp plugin.ron $(PLUGIN)
 	cp $(PLUGIN_NAME) $(PLUGIN)
-	cp emojis.txt $(PLUGIN)
-	cp symbols.txt $(PLUGIN)
+	cp characters.json $(PLUGIN)
 	chmod +x $(PLUGIN)/$(PLUGIN_NAME)

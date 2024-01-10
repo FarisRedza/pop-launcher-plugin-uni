@@ -5,29 +5,17 @@ import sys
 import os
 import difflib
 
-def parse_line(line):
-        split = line.split("\t")
-        return split[0], split[1]
-
-path = os.path.join(os.path.split(__file__)[0], 'symbols.txt')
-with open(path, encoding='utf-8') as f:
-        SYMBOLS = [parse_line(line) for line in f.read().splitlines() if line]
-
-path = os.path.join(os.path.split(__file__)[0], 'emojis.txt')
-with open(path, encoding='utf-8') as f:
-        SYMBOLS = SYMBOLS + [parse_line(line) for line in f.read().splitlines() if line]
-
-SYMBOLS = list(dict.fromkeys(SYMBOLS))
-
-def string_ratio(a, b):
-    ''' Compute ratio of string similarity (higher is better)
-    https://stackoverflow.com/questions/17388213/find-the-similarity-metric-between-two-strings#17388505
-    '''
-    return difflib.SequenceMatcher(None, a, b).ratio()
-
 class App(object):
     def __init__(self):
         self.match = None
+
+    # Load the data from the JSON file
+    character_file_path = os.path.join(os.path.split(__file__)[0], 'characters.json')
+    with open(character_file_path, 'r', encoding='utf-8') as f:
+        character_list = json.load(f)
+
+    # Convert the data structure into a list of tuples
+    CHARACTERS = [(entry['character'], entry['description']) for entry in character_list]
 
     def activate(self, index):
         if not self.matches:
@@ -40,19 +28,30 @@ class App(object):
         sys.stdout.write('"Close"\n')
         sys.stdout.flush()
 
+    def search_character(self, query):
+        data = self.CHARACTERS
+        number_of_results = 8
+        # Get the closest matches using difflib
+        matches = difflib.get_close_matches(query.lower(), [entry[1] for entry in data], n=number_of_results)
+
+        # Find corresponding entries based on matched names
+        results = [(entry[0], entry[1]) for entry in data if entry[1].lower() in matches]
+
+        # Sort the results based on similarity scores in descending order
+        results.sort(key=lambda x: difflib.SequenceMatcher(None, x[1].lower(), query.lower()).ratio(), reverse=True)
+
+        return results
+
     def search(self, query):
         query = query.split(' ', 1)[1].lower()
-        self.matches = [
-            (symbol, description, string_ratio(query, description))
-            for symbol, description in SYMBOLS if query in description
-        ]
+        self.matches = self.search_character(query)
         
-        for index, (symbol, description, ratio) in enumerate(self.matches):
+        for index, (symbol, description) in enumerate(self.matches):
             sys.stdout.write(json.dumps({
                 'Append': {
                     'id': index,
                     'name': symbol,
-                    'description': f'{self.matches[index][1]}',
+                    'description': description,
                     'keywords': None,
                     'icon': None,
                     'exec': None,
