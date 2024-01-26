@@ -1,5 +1,5 @@
 # pop-launcher-plugin-uni
-A unicode character search plugin for pop-launcher. Useful for searching for special characters and emojis
+A unicode character search plugin for [pop-launcher](https://github.com/pop-os/launcher). Useful for searching for special characters and emojis
 
 ### Dependencies
 [xclip](https://github.com/astrand/xclip)\
