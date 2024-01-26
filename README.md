@@ -2,7 +2,8 @@
 A unicode character search plugin for pop-launcher. Useful for searching for special characters and emojis
 
 ### Dependencies
-Requires xclip for copying to clipboard\
+[xclip](https://github.com/astrand/xclip)\
+Required for copying to clipboard\
 Debian/Ubuntu and derivatives - `sudo apt install xclip`\
 Nix package - `nix-env -iA nixpkgs.xclip`
 
