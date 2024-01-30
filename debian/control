@@ -1,0 +1,8 @@
+Package: pop-launcher-plugin-spell
+Version: 0.1
+Architecture: all
+Essential: no
+Priority: optional
+Depends: pop-launcher, xclip
+Maintainer: Faris Redza <faris.redza1999@gmail.com>
+Description: A unicode character search plugin for pop-launcher.

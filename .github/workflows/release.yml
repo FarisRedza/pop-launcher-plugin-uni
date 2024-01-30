@@ -1,0 +1,26 @@
+name: Create the DEB
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  Create_Packages:
+    name: Create Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@main
+
+      - name: Build the package
+        run: |
+          make deb_package
+
+      - name: Release the Package
+        uses: softprops/action-gh-release@v1
+        with:
+          files: pop-launcher-plugin-uni_0.1-1_all.deb
