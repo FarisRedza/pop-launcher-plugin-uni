@@ -1,6 +1,7 @@
 Package: pop-launcher-plugin-spell
 Version: 0.1
 Architecture: all
+Section: misc
 Essential: no
 Priority: optional
 Depends: pop-launcher, xclip
