@@ -31,6 +31,6 @@ def generate_unicode_list():
 unicode_data_list = generate_unicode_list()
 
 # Write the list to a file in JSON format
-output_file_path = 'characters.json'
+output_file_path = 'src/characters.json'
 with open(output_file_path, 'w', encoding='utf-8') as f:
     json.dump(unicode_data_list, f, ensure_ascii=False, indent=2)
