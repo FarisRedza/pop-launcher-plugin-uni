@@ -1,0 +1,15 @@
+Source: pop-launcher-plugin-uni
+Section: misc
+Priority: optional
+Maintainer: Faris Redza <faris.redza1999@gmail.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.0
+Homepage: https://github.com/FarisRedza/pop-launcher-plugin-uni
+Vcs-Browser: https://github.com/FarisRedza/pop-launcher-plugin-uni
+Vcs-Git: https://github.com/FarisRedza/pop-launcher-plugin-uni.git
+Rules-Requires-Root: no
+
+Package: pop-launcher-plugin-uni
+Architecture: all
+Depends: xclip, ${shlibs:Depends}, ${misc:Depends}
+Description: A unicode character search plugin for pop-launcher

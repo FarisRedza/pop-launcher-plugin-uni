@@ -1,3 +1,9 @@
 PKG_SOURCE/
 *.deb
 .venv
+debian/*
+!debian/source
+!debian/changelog
+!debian/control
+!debian/copyright
+!debian/rules
