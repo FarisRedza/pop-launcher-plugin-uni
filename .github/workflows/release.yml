@@ -18,6 +18,7 @@ jobs:
 
       - name: Build the package
         run: |
+          apt install debmake
           debmake -p pop-launcher-plugin-uni -t
           debuild -us -uc
 
