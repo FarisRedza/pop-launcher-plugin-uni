@@ -11,5 +11,5 @@ Rules-Requires-Root: no
 
 Package: pop-launcher-plugin-uni
 Architecture: all
-Depends: xclip, ${shlibs:Depends}, ${misc:Depends}
+Depends: xclip, ${misc:Depends}, ${shlibs:Depends}
 Description: A unicode character search plugin for pop-launcher
