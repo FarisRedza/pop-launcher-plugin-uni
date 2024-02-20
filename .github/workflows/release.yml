@@ -18,9 +18,10 @@ jobs:
 
       - name: Build the package
         run: |
-          make deb_package
+          debmake -p pop-launcher-plugin-uni -t
+          debuild -us -uc
 
       - name: Release the Package
         uses: softprops/action-gh-release@v1
         with:
-          files: pop-launcher-plugin-uni_0.2-1_all.deb
+          files: pop-launcher-plugin-uni*.deb

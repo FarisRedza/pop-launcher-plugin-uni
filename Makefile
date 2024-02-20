@@ -1,35 +1,22 @@
-PLUGIN_NAME = uni
+prefix = $(HOME)/.local/share
 
-NAME = pop-launcher-plugin-$(PLUGIN_NAME)
-VERSION = 0.2
-PKG_VERSION = 1
-ARCH = all
-PKG_NAME = $(NAME)_$(VERSION)-$(PKG_VERSION)_$(ARCH).deb
+all: src/characters.json
 
-VENV_PATH = .venv/bin
-VENV_PYTHON = $(VENV_PATH)/python
-VENV_PIP = $(VENV_PATH)/pip
-json_file:
+src/characters.json: src/uni
 	python3 -m venv .venv
-	$(VENV_PIP) install emoji
-	$(VENV_PYTHON) characters.py
+	.venv/bin/pip install emoji
+	.venv/bin/python scripts/characters
 
-LOCAL_PLUGIN_DIR = $(HOME)/.local/share/pop-launcher/plugins
-install:
-	mkdir -p $(LOCAL_PLUGIN_DIR)/$(PLUGIN_NAME)
-	cp -r src/* $(LOCAL_PLUGIN_DIR)/$(PLUGIN_NAME)
-	chmod +x $(LOCAL_PLUGIN_DIR)/$(PLUGIN_NAME)
+install: src/characters.json
+	install -D src/* \
+		-t $(DESTDIR)$(prefix)/pop-launcher/plugins/uni
+
+clean:
+	-rm -rf .venv
+
+distclean: clean
 
 uninstall:
-	rm -rfv $(LOCAL_PLUGIN_DIR)/$(PLUGIN_NAME)
+	-rm -rf $(DESTDIR)$(prefix)/pop-launcher/plugins/uni
 
-BIN_DIR = usr/lib/pop-launcher/plugins/$(PLUGIN_NAME)
-deb_package:
-	mkdir -p PKG_SOURCE
-	cp -r debian PKG_SOURCE/DEBIAN
-
-	mkdir -p PKG_SOURCE/$(BIN_DIR)
-	cp -r src/* PKG_SOURCE/$(BIN_DIR)
-
-	dpkg-deb --root-owner-group --build PKG_SOURCE $(PKG_NAME)
-	rm -r PKG_SOURCE
+.PHONY: all install clean distclean uninstall 

@@ -1,0 +1,17 @@
+pop-launcher-plugin-uni (0.3-1) jammy; urgency=medium
+
+  * Improved packaging system and added example
+
+ -- Faris Redza <faris.redza1999@gmail.com>  Tue, 20 Feb 2024 20:09:09 +0000
+
+pop-launcher-plugin-uni (0.2-1) jammy; urgency=medium
+
+  * Fixed duplicate "face" entries for cases such as "unicorn" and "unicorn face"
+
+ -- Faris Redza <faris.redza1999@gmail.com>  Tue, 20 Feb 2024 11:52:36 +0000
+
+pop-launcher-plugin-uni (0.1-1) jammy; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Faris Redza <faris.redza1999@gmail.com>  Sun, 11 Feb 2024 15:08:53 +0000
