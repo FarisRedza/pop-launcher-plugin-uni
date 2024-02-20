@@ -5,7 +5,7 @@ all: src/characters.json
 src/characters.json: src/uni
 	python3 -m venv .venv
 	.venv/bin/pip install emoji
-	.venv/bin/python scripts/characters.py
+	.venv/bin/python scripts/characters
 
 install: src/characters.json
 	install -D src/* \
