@@ -1,7 +1,7 @@
 PLUGIN_NAME = uni
 
 NAME = pop-launcher-plugin-$(PLUGIN_NAME)
-VERSION = 0.1
+VERSION = 0.2
 PKG_VERSION = 1
 ARCH = all
 PKG_NAME = $(NAME)_$(VERSION)-$(PKG_VERSION)_$(ARCH).deb
@@ -19,6 +19,9 @@ install:
 	mkdir -p $(LOCAL_PLUGIN_DIR)/$(PLUGIN_NAME)
 	cp -r src/* $(LOCAL_PLUGIN_DIR)/$(PLUGIN_NAME)
 	chmod +x $(LOCAL_PLUGIN_DIR)/$(PLUGIN_NAME)
+
+uninstall:
+	rm -rfv $(LOCAL_PLUGIN_DIR)/$(PLUGIN_NAME)
 
 BIN_DIR = usr/lib/pop-launcher/plugins/$(PLUGIN_NAME)
 deb_package:
