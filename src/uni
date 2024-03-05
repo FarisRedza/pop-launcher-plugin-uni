@@ -10,12 +10,10 @@ class App(object):
     def __init__(self):
         self.match = None
 
-    # Load the data from the JSON file
     character_file_path = os.path.join(os.path.split(__file__)[0], 'characters.json')
     with open(character_file_path, 'r', encoding='utf-8') as f:
         character_list = json.load(f)
 
-    # Convert the data structure into a list of tuples
     CHARACTERS = [(entry['character'], entry['description']) for entry in character_list]
 
     def activate(self, index):
@@ -32,13 +30,9 @@ class App(object):
     def search_character(self, query):
         data = self.CHARACTERS
         number_of_results = 8
-        # Get the closest matches using difflib
         matches = difflib.get_close_matches(query.lower(), [entry[1] for entry in data], n=number_of_results)
-
-        # Find corresponding entries based on matched names
+        
         results = [(entry[0], entry[1]) for entry in data if entry[1].lower() in matches]
-
-        # Sort the results based on similarity scores in descending order
         results.sort(key=lambda x: difflib.SequenceMatcher(None, x[1].lower(), query.lower()).ratio(), reverse=True)
 
         return results
