@@ -12,7 +12,8 @@ install: src/characters.json
 		-t $(DESTDIR)$(prefix)/pop-launcher/plugins/uni
 
 clean:
-	-rm -rf .venv
+	rm -rf .venv
+	rm -rf src/characters.json
 
 distclean: clean
 
