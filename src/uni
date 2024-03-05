@@ -23,7 +23,7 @@ class App(object):
             return
         
         with subprocess.Popen(['xclip', '-selection', 'clipboard'], stdin=subprocess.PIPE) as process:
-            process.stdin.write(self.matches[index].encode())
+            process.stdin.write(self.matches[int(index)][0].encode())
             process.stdin.close()
 
         sys.stdout.write('"Close"\n')
