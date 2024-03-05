@@ -3,6 +3,7 @@
 import json
 import sys
 import os
+import subprocess
 import difflib
 
 class App(object):
@@ -21,10 +22,10 @@ class App(object):
         if not self.matches:
             return
         
-        with os.popen('xclip -selection clipboard', 'w') as stream:
-            stream.write(self.matches[int(index)][0])
-            stream.flush()
-        
+        with subprocess.Popen(['xclip', '-selection', 'clipboard'], stdin=subprocess.PIPE) as process:
+            process.stdin.write(self.matches[index].encode())
+            process.stdin.close()
+
         sys.stdout.write('"Close"\n')
         sys.stdout.flush()
 
