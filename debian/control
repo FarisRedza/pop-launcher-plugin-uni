@@ -2,7 +2,7 @@ Source: pop-launcher-plugin-uni
 Section: misc
 Priority: optional
 Maintainer: Faris Redza <faris.redza1999@gmail.com>
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13), python3-venv
 Standards-Version: 4.6.0
 Homepage: https://github.com/FarisRedza/pop-launcher-plugin-uni
 Vcs-Browser: https://github.com/FarisRedza/pop-launcher-plugin-uni
@@ -11,5 +11,8 @@ Rules-Requires-Root: no
 
 Package: pop-launcher-plugin-uni
 Architecture: all
-Depends: xclip, ${misc:Depends}, ${shlibs:Depends}
-Description: A unicode character search plugin for pop-launcher
+Depends: pop-launcher | cosmic-launcher, python3, xclip, ${misc:Depends}
+Description: Unicode character search plugin for pop-launcher
+ Uni plugin for pop-launcher and cosmic-launcher that
+ allows for unicode character search. Useful for
+ searching for special characters and emojis.

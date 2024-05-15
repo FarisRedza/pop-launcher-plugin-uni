@@ -8,8 +8,10 @@ src/characters.json: src/uni
 	.venv/bin/python scripts/characters
 
 install: src/characters.json
-	install -D src/* \
-		-t $(DESTDIR)$(prefix)/pop-launcher/plugins/uni
+	install -Dm0644 src/*json src/plugin.ron \
+		-t $(DESTDIR)$(prefix)/pop-launcher/plugins/
+
+	install -Dm0755 src/uni -t $(DESTDIR)$(prefix)/pop-launcher/plugins/
 
 clean:
 	-rm -rf .venv

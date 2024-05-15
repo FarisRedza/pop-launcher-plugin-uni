@@ -12,6 +12,6 @@ pop-launcher-plugin-uni (0.2-1) jammy; urgency=medium
 
 pop-launcher-plugin-uni (0.1-1) jammy; urgency=medium
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release.
 
  -- Faris Redza <faris.redza1999@gmail.com>  Sun, 11 Feb 2024 15:08:53 +0000
