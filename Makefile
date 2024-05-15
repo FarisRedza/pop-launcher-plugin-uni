@@ -9,9 +9,9 @@ src/characters.json: src/uni
 
 install: src/characters.json
 	install -Dm0644 src/*json src/plugin.ron \
-		-t $(DESTDIR)$(prefix)/pop-launcher/plugins/
+		-t $(DESTDIR)$(prefix)/pop-launcher/plugins/uni/
 
-	install -Dm0755 src/uni -t $(DESTDIR)$(prefix)/pop-launcher/plugins/
+	install -Dm0755 src/uni -t $(DESTDIR)$(prefix)/pop-launcher/plugins/uni/
 
 clean:
 	-rm -rf .venv
