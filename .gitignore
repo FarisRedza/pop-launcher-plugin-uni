@@ -7,3 +7,13 @@ debian/*
 !debian/control
 !debian/copyright
 !debian/rules
+
+debug/
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+vendor/
+vendor.tar
+config.toml
