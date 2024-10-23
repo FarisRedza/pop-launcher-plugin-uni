@@ -2,7 +2,9 @@ Source: pop-launcher-plugin-uni
 Section: misc
 Priority: optional
 Maintainer: Faris Redza <faris.redza1999@gmail.com>
-Build-Depends: debhelper-compat (= 13), python3-venv
+Build-Depends:
+    debhelper-compat (= 13),
+    dh-cargo,
 Standards-Version: 4.6.0
 Homepage: https://github.com/FarisRedza/pop-launcher-plugin-uni
 Vcs-Browser: https://github.com/FarisRedza/pop-launcher-plugin-uni
@@ -10,9 +12,16 @@ Vcs-Git: https://github.com/FarisRedza/pop-launcher-plugin-uni.git
 Rules-Requires-Root: no
 
 Package: pop-launcher-plugin-uni
-Architecture: all
-Depends: pop-launcher | cosmic-launcher, python3, xclip, ${misc:Depends}
+Architecture: any
+Depends:
+    pop-launcher,
+    ${misc:Depends},
+    ${shlibs:Depends}
 Description: Unicode character search plugin for pop-launcher
  Uni plugin for pop-launcher and cosmic-launcher that
  allows for unicode character search. Useful for
  searching for special characters and emojis.
+ .
+ Usage:
+ In pop launcher type uni followed by your query to search for the closest
+ matching character. Pressing enter copies the result into the clipboard.

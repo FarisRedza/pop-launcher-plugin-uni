@@ -1,3 +1,10 @@
+pop-launcher-plugin-uni (0.4-1~jammy) jammy; urgency=medium
+
+  * Rust rewrite
+  * Removed xclip as a dependency
+
+ -- Faris Redza <faris.redza1999@gmail.com>  Tue, 22 Oct 2024 18:55:08 +0100
+
 pop-launcher-plugin-uni (0.3-1) jammy; urgency=medium
 
   * Improved packaging system and added example
