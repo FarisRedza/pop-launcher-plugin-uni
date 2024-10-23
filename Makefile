@@ -24,15 +24,15 @@ install: src/characters.json build
 	install -Dm0755 target/release/uni \
 		-t $(DESTDIR)$(prefix)/pop-launcher/plugins/uni/
 
-vendor:
+vendor: src/characters.json
 	mkdir -p .cargo
 	cargo vendor | head -n -1 > .cargo/config.toml
 	echo 'directory = "vendor"' >> .cargo/config.toml
 	tar pcf vendor.tar vendor
-	rm -rf vendor
+	rm -rf vendor .venv
 
 clean:
-	-rm -rf target vendor .venv src/characters.json
+	-rm -rf target vendor .venv
 
 distclean: clean
 

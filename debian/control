@@ -5,7 +5,6 @@ Maintainer: Faris Redza <faris.redza1999@gmail.com>
 Build-Depends:
     debhelper-compat (= 13),
     dh-cargo,
-    python3-venv
 Standards-Version: 4.6.0
 Homepage: https://github.com/FarisRedza/pop-launcher-plugin-uni
 Vcs-Browser: https://github.com/FarisRedza/pop-launcher-plugin-uni
@@ -18,7 +17,6 @@ Depends:
     pop-launcher,
     ${misc:Depends},
     ${shlibs:Depends}
-
 Description: Unicode character search plugin for pop-launcher
  Uni plugin for pop-launcher and cosmic-launcher that
  allows for unicode character search. Useful for

@@ -13,7 +13,7 @@ def generate_unicode_list():
         emoji_name = emoji_data.get('en', '').strip(':').replace('_', ' ').lower()
         if emoji_name not in unicode_set:
             unicode_set.add(emoji_name)
-            unicode_list.append({'symbol': emoji_char, 'description': emoji_name})
+            unicode_list.append({'character': emoji_char, 'description': emoji_name})
 
     # Process standard Unicode characters
     for code_point in range(0x110000):
