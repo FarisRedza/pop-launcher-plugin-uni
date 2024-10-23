@@ -1,3 +1,9 @@
+pop-launcher-plugin-uni (0.4-1~noble) noble; urgency=medium
+
+  * Packaged for noble
+
+ -- Faris Redza <faris.redza1999@gmail.com>  Wed, 23 Oct 2024 10:43:22 +0100
+
 pop-launcher-plugin-uni (0.4-1~jammy) jammy; urgency=medium
 
   * Rust rewrite
