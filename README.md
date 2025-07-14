@@ -7,7 +7,5 @@ Uninstall with `make uninstall` when in the repo's folder
 
 For system-wide installation, download and install the deb file
 
-To install system-wide, download and install the deb package
-
 ### Usage
 In pop launcher type uni followed by your query to search for the closest matching character. Pressing enter copies the result into the clipboard.
